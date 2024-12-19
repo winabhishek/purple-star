@@ -1,0 +1,39 @@
+def get_matrix_input(rows, cols):
+    matrix = []
+    print(f"Enter the elements of the matrix ({rows}x{cols}):")
+    for i in range(rows):
+        row = list(map(int, input(f"Enter row {i + 1}: ").split()))
+        if len(row) != cols:
+            raise ValueError(f"Row must have exactly {cols} elements")
+        matrix.append(row)
+    return matrix
+
+def matrix_addition(matrix1, matrix2):
+    if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):
+        raise ValueError("Matrices must have the same dimensions")
+
+    result = [[0 for _ in range(len(matrix1[0]))] for _ in range(len(matrix1))]
+
+    for i in range(len(matrix1)):
+        for j in range(len(matrix1[0])):
+            result[i][j] = matrix1[i][j] + matrix2[i][j]
+
+    return result
+
+def main():
+    rows = int(input("Enter the number of rows: "))
+    cols = int(input("Enter the number of columns: "))
+
+    print("Matrix 1:")
+    matrix1 = get_matrix_input(rows, cols)
+
+    print("Matrix 2:")
+    matrix2 = get_matrix_input(rows, cols)
+
+    result = matrix_addition(matrix1, matrix2)
+    print("Resultant Matrix:")
+    for row in result:
+        print(row)
+
+if __name__ == "__main__":
+    main()
